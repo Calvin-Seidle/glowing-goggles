@@ -23,6 +23,14 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+group :development do
+  gem 'rails_layout'
+end
+group :development, :test do
+  # gem 'pry-rails'
+  # gem 'pry-rescue'
+  gem 'rubocop'
+end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'devise'
@@ -30,11 +38,5 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
-group :development do
-  gem 'rails_layout'
-end
-group :development, :test do
-  gem 'pry-rails'
-  gem 'pry-rescue'
-  gem 'rubocop'
-end
+gem 'cancan'
+gem 'faker'

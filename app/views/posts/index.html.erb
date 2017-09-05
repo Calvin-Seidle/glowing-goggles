@@ -1,10 +1,4 @@
-<h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<div class="well">
-  <%= render 'layouts/stats' %>
-  <%= render 'follow_form' if user_signed_in? %>
-</div>
+<h1>Posts</h1>
 
 <table class="table">
   <thead>
@@ -18,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @user.posts.each do |post| %>
+    <% @posts.each do |post| %>
       <tr>
         <td><%= post.user.name %> <%= post.user.surname %></td>
         <td><%= post.title %></td>
@@ -31,3 +25,7 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>
