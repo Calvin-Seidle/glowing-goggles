@@ -3,9 +3,9 @@
 
 	<% commentable.comments.each do |comment| %>
 		<div class="well">
-			<%= comment.user.name %> <%= comment.user.surname %>  |
+			<a href="/users/<%= comment.user.id %>"><%= comment.user.name %> <%= comment.user.surname %></a>   |
 			<%= comment.body %> | 
-			<%= comment.created_at %>
+			<%= comment.created_at.strftime("%d %b %Y at %H:%M") %>
 		</div>
 	<% end %>
 </div>

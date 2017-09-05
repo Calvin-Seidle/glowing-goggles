@@ -1,6 +1,6 @@
 <p>
   <strong>User:</strong>
-  <%= @post.user.name %> <%= @post.user.surname %>
+  <a href="/users/<%= @post.user.id %>"><%= @post.user.name %> <%= @post.user.surname %></a>
 </p>
 
 <p>
