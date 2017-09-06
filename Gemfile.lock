@@ -72,6 +72,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    css_parser (1.5.0)
+      addressable
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -203,6 +205,9 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    roadie (3.2.2)
+      css_parser (~> 1.4)
+      nokogiri (~> 1.5)
     rubocop (0.49.1)
       parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
@@ -292,6 +297,7 @@ DEPENDENCIES
   rails (~> 5.1.3)
   rails_admin
   rails_layout
+  roadie
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
