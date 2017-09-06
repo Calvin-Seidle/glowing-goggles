@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get '/contact' => 'contacts#new'
+  resources :contacts
   resources :posts do 
   	resources :comments, module: :posts
   end

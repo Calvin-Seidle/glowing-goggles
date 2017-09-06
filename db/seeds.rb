@@ -9,21 +9,27 @@
 # puts 'CREATED ADMIN USER: ' << user.email
 
 # Users
-User.create!(name:  "Calvin",
+u = User.create!(name:  "Calvin",
 			       surname: "Seidle",	
              email: "calvin@littlepig.cc",
              password: "seidlc06",
              admin:     true,
              created_at: Time.zone.now)
+puts 'CREATED ADMIN USER: ' << u.name, u.created_at 
 
-99.times do |n|
-  name  = Faker::Name.name
+49.times do |n|
+  name  = Faker::Name.first_name
+  surname = Faker::Name.last_name
   email = "example-#{n+1}@littlepig.cc"
   password = "password"
+  created_at = Time.now
   User.create!(name:  name,
+               surname: surname,
                email: email,
                password: password,
+               admin: false,
                created_at: Time.zone.now)
+  puts 'CREATED USER: ' << name, surname, created_at 
 end
 
 # Posts
@@ -31,8 +37,10 @@ users = User.order(:created_at).take(6)
 50.times do |n|
   title = "Post-#{n+1}"
   caption = "Caption-#{n+1}"
-  body = Faker::Lorem.sentence(5)
+  created_at = Time.now
+  body = Faker::TheFreshPrinceOfBelAir.quote
   users.each { |user| user.posts.create!(title: title, body: body, caption: caption) }
+  puts 'CREATED POST: ' << title, created_at 
 end
 
 # Following relationships

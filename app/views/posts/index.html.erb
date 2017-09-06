@@ -1,31 +1,79 @@
-<h1>Posts</h1>
+<!-- Page Content -->
+<div class="container">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Caption</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Posts
+                <small><%= @posts.count %> and counting...</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><%= link_to 'Home', root_path %>
+                </li>
+                <li class="active">Blog Home Two</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
 
-  <tbody>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %><hr>
+
+    <!-- Blog Post Row -->
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.name %> <%= post.user.surname %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.caption %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="col-md-2 col-xs-12 text-center">
+            <p>
+              <% if post.user.avatar? %>
+                <%= image_tag post.user.avatar.url(:thumb), class: "avatar" %>
+              <% else %>
+                <i class="fa fa-user fa-4x"></i>
+              <% end %>
+            </p>
+        </div>
+        
+        <div class="col-md-8 col-xs-12">
+            <h3>
+                <%= link_to post.title, post %>
+            </h3>
+            <p>by <a href="#"><%= post.user.name %> <%= post.user.surname %></a> on 
+            <small class="text-muted"><%= post.created_at.strftime("%d %b %Y at %H:%M") %></small>
+            </p>
+            <p><%= post.body %></p>
+            <p>
+              <% if post.image? %>
+                <%= link_to post do %>
+                  <%= image_tag post.image.url(:large), class: "img-hover img-responsive post-image" %>
+                  
+                  <%= post.caption %>
+                <% end %>
+              <% end %>
+            </p>
+            <div class="well">
+                <div class="col-xs-3 col-md-3">
+                    <i class="fa fa-comment fa-2x"></i>
+                    <% if post.comments.any? %>
+                        <%= post.comments.count %>
+                    <% end %>
+                </div> 
+                <div class="col-xs-3 col-md-3">  
+                    <%= link_to "<i class='fa fa-eye fa-2x'></i>".html_safe, post %>
+                </div>
+                <!--  -->
+                    <% if current_user == post.user %>
+                    <div class="col-xs-3 col-md-3">
+                    <%= link_to "<i class='fa fa-trash fa-2x'></i>".html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %> 
+                    </div>                    
+                    <% end %>
+                <!--  -->
+            </div>
+        </div>
+
+            
+        
+      </div><hr>
     <% end %>
-  </tbody>
-</table>
+    <!-- /.row -->
 
-<br>
+    <hr>
 
-<%= link_to 'New Post', new_post_path %>
+</div>
+<!-- /.container -->
